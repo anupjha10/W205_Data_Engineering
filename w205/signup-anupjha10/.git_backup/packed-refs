@@ -1,0 +1,7 @@
+# pack-refs with: peeled fully-peeled 
+e566516c5f92c30ec89bbb05be50c376070e8f65 refs/remotes/origin/anupjha10-patch-1
+d95ddbc40bd100da332981f41fe9ea372e79c259 refs/remotes/origin/master
+792d810e91433e6d3847e21cb75fa3655bfda162 refs/tags/2018-01-spring
+^db3f327b61df86929257c22b4d545fa69b950e63
+f377dd0d89d35f3aef870543abd006db4c08cac2 refs/tags/2018-05-summer
+^db3f327b61df86929257c22b4d545fa69b950e63

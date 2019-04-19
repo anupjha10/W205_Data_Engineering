@@ -1,0 +1,8 @@
+[core]
+account = anup.jha@berkeley.edu
+project = flowing-depot-228714
+
+[compute]
+zone = us-west1-b
+region = us-west1
+

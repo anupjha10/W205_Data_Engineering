@@ -1,0 +1,107 @@
+2019-01-25 01:14:29,538 DEBUG    root            Loaded Command Group: [u'gcloud', u'init']
+2019-01-25 01:14:29,540 DEBUG    root            Running [gcloud.init] with arguments: []
+2019-01-25 01:14:29,541 INFO     ___FILE_ONLY___ Welcome! This command will take you through the configuration of gcloud.
+
+
+2019-01-25 01:14:29,543 INFO     ___FILE_ONLY___ Your current configuration has been set to: [default]
+
+
+2019-01-25 01:14:29,543 INFO     ___FILE_ONLY___ You can skip diagnostics next time by using the following flag:
+
+2019-01-25 01:14:29,544 INFO     ___FILE_ONLY___   gcloud init --skip-diagnostics
+
+
+2019-01-25 01:14:29,544 INFO     ___FILE_ONLY___ Network diagnostic detects and fixes local network connection issues.
+
+2019-01-25 01:14:29,545 INFO     ___FILE_ONLY___ Checking network connection...
+2019-01-25 01:14:30,547 INFO     ___FILE_ONLY___ Reachability Check passed.
+
+2019-01-25 01:14:30,548 INFO     ___FILE_ONLY___ Network diagnostic (1/1 checks) passed.
+
+
+2019-01-25 01:15:35,851 DEBUG    root            Loaded Command Group: [u'gcloud', u'auth']
+2019-01-25 01:15:35,855 DEBUG    root            Loaded Command Group: [u'gcloud', u'auth', u'login']
+2019-01-25 01:15:35,860 INFO     root            Executing: [gcloud auth login --force --brief]
+2019-01-25 01:15:35,862 DEBUG    root            Running [gcloud.auth.login] with arguments: [--brief: "True", --force: "True"]
+2019-01-25 01:15:35,865 INFO     ___FILE_ONLY___ Go to the following link in your browser:
+
+    https://accounts.google.com/o/oauth2/auth?redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&prompt=select_account&response_type=code&client_id=32555940559.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fappengine.admin+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcompute+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Faccounts.reauth&access_type=offline
+
+
+
+2019-01-25 01:18:06,835 INFO     oauth2client.client Successfully retrieved access token
+2019-01-25 01:18:06,851 INFO     root            Display format: "none"
+2019-01-25 01:18:06,855 DEBUG    root            SDK update checks are disabled.
+2019-01-25 01:18:06,856 INFO     ___FILE_ONLY___ You are logged in as: [anup.jha@berkeley.edu].
+
+
+2019-01-25 01:18:19,571 INFO     ___FILE_ONLY___ Your current project has been set to: [flowing-depot-228714].
+
+
+2019-01-25 01:18:19,572 DEBUG    root            Loaded Command Group: [u'gcloud', u'compute', u'project_info']
+2019-01-25 01:18:19,585 DEBUG    root            Loaded Command Group: [u'gcloud', u'compute', u'project-info', u'describe']
+2019-01-25 01:18:19,586 INFO     root            Executing: [gcloud compute project-info describe --quiet]
+2019-01-25 01:18:19,589 DEBUG    root            Running [gcloud.compute.project-info.describe] with arguments: [--no-user-output-enabled: "false", --quiet: "True", --verbosity: "none"]
+2019-01-25 01:18:19,884 INFO     root            Display disabled.
+2019-01-25 01:18:19,884 DEBUG    root            SDK update checks are disabled.
+2019-01-25 01:18:25,730 DEBUG    root            Loaded Command Group: [u'gcloud', u'compute', u'zones']
+2019-01-25 01:18:25,732 DEBUG    root            Loaded Command Group: [u'gcloud', u'compute', u'zones', u'list']
+2019-01-25 01:18:25,733 INFO     root            Executing: [gcloud compute zones list]
+2019-01-25 01:18:25,735 DEBUG    root            Running [gcloud.compute.zones.list] with arguments: [--no-user-output-enabled: "false", --verbosity: "none"]
+2019-01-25 01:18:25,743 INFO     root            Display disabled.
+2019-01-25 01:18:26,021 DEBUG    root            SDK update checks are disabled.
+2019-01-25 01:20:15,331 INFO     ___FILE_ONLY___ Your project default Compute Engine zone has been set to [us-west1-b].
+You can change it by running [gcloud config set compute/zone NAME].
+
+
+2019-01-25 01:20:15,332 DEBUG    root            Loaded Command Group: [u'gcloud', u'compute', u'regions']
+2019-01-25 01:20:15,334 DEBUG    root            Loaded Command Group: [u'gcloud', u'compute', u'regions', u'describe']
+2019-01-25 01:20:15,335 INFO     root            Executing: [gcloud compute regions describe https://www.googleapis.com/compute/v1/projects/flowing-depot-228714/regions/us-west1]
+2019-01-25 01:20:15,339 DEBUG    root            Running [gcloud.compute.regions.describe] with arguments: [--no-user-output-enabled: "false", --verbosity: "none", NAME: "https://www.googleapis.com/compute/v1/projects/flowing-depot-228714/regions/us-west1"]
+2019-01-25 01:20:15,558 INFO     root            Display disabled.
+2019-01-25 01:20:15,559 DEBUG    root            SDK update checks are disabled.
+2019-01-25 01:20:15,564 INFO     ___FILE_ONLY___ Your project default Compute Engine region has been set to [us-west1].
+You can change it by running [gcloud config set compute/region NAME].
+
+
+2019-01-25 01:20:15,564 DEBUG    root            Executing command: [u'/usr/lib/google-cloud-sdk/bin/gsutil', 'config', '-n', '-o', '/w205/.boto']
+2019-01-25 01:20:16,740 DEBUG    ___FILE_ONLY___ 
+2019-01-25 01:20:16,741 DEBUG    ___FILE_ONLY___ This command will create a boto config file at /w205/.boto containing
+your credentials, based on your responses to the following questions.
+
+Boto config file "/w205/.boto" created. If you need to use a proxy to
+access the Internet please see the instructions in that file.
+
+2019-01-25 01:20:16,741 INFO     ___FILE_ONLY___ Created a default .boto configuration file at [/w205/.boto]. See this file and
+[https://cloud.google.com/storage/docs/gsutil/commands/config] for more
+information about configuring Google Cloud Storage.
+
+2019-01-25 01:20:16,741 INFO     ___FILE_ONLY___ Your Google Cloud SDK is configured and ready to use!
+
+
+2019-01-25 01:20:16,742 INFO     ___FILE_ONLY___ * Commands that require authentication will use anup.jha@berkeley.edu by default
+
+2019-01-25 01:20:16,743 INFO     ___FILE_ONLY___ * Commands will reference project `flowing-depot-228714` by default
+
+2019-01-25 01:20:16,743 INFO     ___FILE_ONLY___ * Compute Engine commands will use region `us-west1` by default
+
+2019-01-25 01:20:16,743 INFO     ___FILE_ONLY___ * Compute Engine commands will use zone `us-west1-b` by default
+
+
+2019-01-25 01:20:16,743 INFO     ___FILE_ONLY___ Run `gcloud help config` to learn how to change individual settings
+
+
+2019-01-25 01:20:16,744 INFO     ___FILE_ONLY___ This gcloud configuration is called [default]. You can create additional configurations if you work with multiple accounts and/or projects.
+
+2019-01-25 01:20:16,744 INFO     ___FILE_ONLY___ Run `gcloud topic configurations` to learn more.
+
+
+2019-01-25 01:20:16,744 INFO     ___FILE_ONLY___ Some things to try next:
+
+
+2019-01-25 01:20:16,745 INFO     ___FILE_ONLY___ * Run `gcloud --help` to see the Cloud Platform services you can interact with. And run `gcloud help COMMAND` to get help on any gcloud command.
+
+2019-01-25 01:20:16,745 INFO     ___FILE_ONLY___ * Run `gcloud topic -h` to learn about advanced features of the SDK like arg files and output formatting
+
+2019-01-25 01:20:16,747 INFO     root            Display format: "default"
+2019-01-25 01:20:16,748 DEBUG    root            SDK update checks are disabled.

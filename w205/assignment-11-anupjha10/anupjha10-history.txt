@@ -1,0 +1,1000 @@
+  376  cp ../course-content/05-Storing-Data-II/example-0-docker-compose.yml .
+  377  ls
+  378  vi example-0-docker-compose.yml 
+  379  docker-compose up -d
+  380  cp example-0-docker-compose.yml docker-compose.yml
+  381  docker-compose up -d
+  382  docker ps -a
+  383  docker-compose ps
+  384  docker-compose logs redis
+  385  docker-compose logs redis
+  386  cd w205/redis-standalone/
+  387  ls
+  388  cd w205/redis-standalone/
+  389  docker-compose logs redis
+  390  clear
+  391  ls
+  392  ipython
+  393  docker-compose down
+  394  docker ps -a
+  395  mkdir ~/w205/redis-cluster
+  396  cd ~/w205/redis-cluster
+  397  cp ../course-content/05-Storing-Data-II/example-1-docker-compose.yml docker-compose.yml
+  398  vi docker-compose.yml 
+  399  docker-compose up -d
+  400  docker-compose ps
+  401  docker-compose logs mids
+  402  docker-compose exec mids bash
+  403  docker-compose ps
+  404  docker-compose down
+  405  cp ../course-content/05-Storing-Data-II/example-2-docker-compose.yml docker-compose.yml
+  406  vi docker-compose.yml 
+  407  docker-compose up -d
+  408  docker-compose ps
+  409  docker-compose exec mids jupyter notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root
+  410  docker-compose down
+  411  docker-compose ps
+  412  cp ../course-content/05-Storing-Data-II/example-3-docker-compose.yml docker-compose.yml
+  413  vi docker-compose.yml 
+  414  docker-compose up
+  415  docker-compose up -d
+  416  docker-compose ps
+  417  docker-compose logs mids
+  418  docker-compose down
+  419  cp ../course-content/05-Storing-Data-II/example-4-docker-compose.yml docker-compose.yml
+  420  vi docker-compose.yml 
+  421  curl -L -o trips.csv https://goo.gl/QvHLKe
+  422  ls
+  423  head trips.csv 
+  424  docker-compose up -d
+  425  docker-compose logs mids
+  426  docker-compose down
+  427  docker-compose ps
+  428  docker ps -a
+  429  cd w205/
+  430  cd assignment-04-anupjha10/
+  431  ls
+  432  git branch assignment
+  433  git checkout assignment
+  434  docker ps -a
+  435  docker run -it --rm -p 8888:8888 -v ~/w205:/w205 midsw205/base bash
+  436  git status
+  437  git add 04-Assignment-Anup-Jha.ipynb 
+  438  git add dataset_size.csv 
+  439  git commit -m "Answered the project questions"
+  440  git push origin assignment
+  441  ls
+  442  cd w205/
+  443  ls
+  444  git clone https://github.com/mids-w205-crook/assignment-05-anupjha10.git
+  445  cd assignment-05-anupjha10/
+  446  ls
+  447  git branch
+  448  git branch Assignment
+  449  git checkout Assignment 
+  450  git branch
+  451  ls
+  452  cd ..
+  453  cd w205/
+  454  ls
+  455  cd redis-
+  456  cd redis-cluster/
+  457  ls
+  458  cd ..
+  459  cd assignment-05-anupjha10/
+  460  ls
+  461  vi docker-compose.yml
+  462  docker-compose up -d
+  463  docker-compose logs mids
+  464  history > anupjha10-history.txt
+  465  vi anupjha10-history.txt 
+  466  cd ~/w205/
+  467  curl -L -o trips.csv https://goo.gl/QvHLKe
+  468  ls
+  469  rm trips.csv 
+  470  cd assignment-05-anupjha10/
+  471  ls
+  472  curl -L -o trips.csv https://goo.gl/QvHLKe
+  473  ls
+  474  history > anupjha10-history.txt
+  475  ls
+  476  vi htmartin-annotations.md 
+  477  vi anupjha10-history.txt 
+  478  docker-compose down
+  479  history > anupjha10-history.txt
+  480  ls
+  481  git status
+  482  vi anupjha10-history.txt 
+  483  vi anupjha10-annotations.md
+  484  ls
+  485  git status
+  486  git add AnupJha_Assignment5_Redis.ipynb
+  487  git add anupjha10-annotations.md
+  488  git add anupjha10-history.txt
+  489  git add docker-compose.yml
+  490  git add trips.csv
+  491  git commit -m "Completed Assignment"
+  492  git branch
+  493  git push origin Assignment
+  494  exit
+  495  cd w205
+  496  cd kafka`
+  497  cd kafka/
+  498  ls
+  499  docker-compose logs -f kafka
+  500  ipython
+  501  cd w205/
+  502  mkdir kafka
+  503  cd kafka
+  504  vi docker-compose.yml
+  505  docker-compose up -d
+  506  docker-compose ps
+  507  docker ps -a
+  508  docker-compose logs zookeper | grep -i binding
+  509  docker-compose logs zookeeper | grep -i binding
+  510  docker-compose logs kafka | grep -i started
+  511  docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper localhost:32181
+  512  docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper localhost:32181
+  513  docker-compose exec kafka bash -c "seq 42 | kafka-console-producer --request-required-acks 1 --broker-list localhost:29092 --topic foo && echo 'Produced 42 messages.'"
+  514  docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:29092 --topic foo --from-beginning --max-messages 42
+  515  docker-compose down
+  516  docker ps -a
+  517  cp ~/w205/course-content/06-Transforming-Data/docker-compose.yml ~/w205/kafka/
+  518  vi docker-compose.yml 
+  519  curl -L -o github-example-large.json https://goo.gl/Y4MD58
+  520  ls -ltr
+  521  head github-example-large.json 
+  522  docker-compose up -d
+  523  docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  524  docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+  525  docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json | jq '.[]' -c"
+  526  docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+  527  docker-compose exec kafka kafka-console-consumer --bootstrap-server kafka:29092 --topic foo --from-beginning --max-messages 42
+  528  docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e"
+  529  docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e" | wc -l
+  530  docker-compose down
+  531  cd w205/
+  532  cd assignment-05-anupjha10/
+  533  ls
+  534  vi anupjha10-annotations.md 
+  535  docker-compose up -d
+  536  docker-compose log mids
+  537  docker-compose logs mids
+  538  ipython
+  539  docker-compose exec mids bash
+  540  history
+  541  vi anupjha10-annotations.md 
+  542  ls
+  543  git status
+  544  git add AnupJha_Assignment5_Redis.ipynb
+  545  git add anupjha10-annotations.md
+  546  git status
+  547  git branch
+  548  git commit -m "Answered the homework"
+  549  git push origin Assignment 
+  550  ls
+  551  pwd
+  552  docker-compose ps 
+  553  docker-compose down
+  554  docker ps -a
+  555  exit
+  556  cd ~/.ssh
+  557  ssh-keygen -t rsa -b 2048
+  558  ls
+  559  vi authorized_keys 
+  560  vi id_rsa.pub 
+  561  cat id_rsa.pub >> authorized_keys 
+  562  vi authorized_keys 
+  563  ls
+  564  ls -ltr
+  565  pwd
+  566  exit
+  567  ps -a
+  568  who am i
+  569  pwd
+  570  sleep 30
+  571  exit
+  572  ps -a
+  573  exit
+  574  ps -a
+  575  pwd
+  576  ps -a
+  577  sleep 30
+  578  exit
+  579  cd w205/
+  580  cd assignment-06-anupjha10/
+  581  ls
+  582  clear
+  583  docker-compose logs -f kafka
+  584  cd w205/
+  585  ls
+  586  cd course-content/
+  587  ls
+  588  cd 06-Transforming-Data/
+  589  ls
+  590  vi docker-compose.yml 
+  591  docker image ls
+  592  docker image pull
+  593  docker image pull redis
+  594  docker image pull -a
+  595  docker image pull confluentinc/cp-kafka
+  596  docker image pull confluentinc/cp-zookeeper
+  597  docker image pull midsw205/hadoop
+  598  docker image pull midsw205/presto
+  599  docker image pull midsw205/spark-python
+  600  docker image pull midsw205/base
+  601  docker image pull midsw205/cdh-minimal
+  602  docker image ls
+  603  cd ..
+  604  cd assignment-06-anupjha10/
+  605  ls
+  606  cd ..
+  607  ls
+  608  cd assignment-06-anupjha10/
+  609  ls
+  610  curl -L -o assessment-attempts-20180128-121051-nested.json https://goo.gl/ME6hjp
+  611  ls
+  612  vi docker-compose.yml
+  613  vi assessment-attempts-20180128-121051-nested.json 
+  614  jq assessment-attempts-20180128-121051-nested.json 
+  615  jq . assessment-attempts-20180128-121051-nested.json 
+  616  jq . assessment-attempts-20180128-121051-nested.json | less
+  617  jq . assessment-attempts-20180128-121051-nested.json | head
+  618  head assessment-attempts-20180128-121051-nested.json 
+  619  ls
+  620  head -c30 assessment-attempts-20180128-121051-nested.json 
+  621  jq '.[]' assessment-attempts-20180128-121051-nested.json 
+  622  echo '{ "foo": 123, "bar": 456 }' | jq '.foo'
+  623  echo '[{ "foo": 123, "bar": 456 }]' | jq '.foo'
+  624  echo '[{ "foo": 123, "bar": 456 }]' | jq '[]|.foo'
+  625  echo '[{ "foo": 123, "bar": 456 }]' | jq '[],.foo'
+  626  echo '[1,2,3]' | jq '.[]'
+  627  echo '[{ "foo": 123, "bar": 456 }]' | jq '.[].foo'
+  628  echo '{ "foo": 123, "bar": 456 }' | jq '.[]'
+  629  jq -c assessment-attempts-20180128-121051-nested.json 
+  630  jq '.[]|c' assessment-attempts-20180128-121051-nested.json 
+  631  jq '.[]' -c assessment-attempts-20180128-121051-nested.json 
+  632  jq '.[]' assessment-attempts-20180128-121051-nested.json 
+  633  jq length assessment-attempts-20180128-121051-nested.json 
+  634  jq -C '.[]' assessment-attempts-20180128-121051-nested.json | less
+  635  jq '.' assessment-attempts-20180128-121051-nested.json > pretty_json.json
+  636  vi pretty_json.json 
+  637  clear
+  638  docker-compose up -d
+  639  docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  640  docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+  641  pwd
+  642  ls
+  643  jq '.[]' -c
+  644  jq '.[]' -c assessment-attempts-20180128-121051-nested.json 
+  645  jq length assessment-attempts-20180128-121051-nested.json 
+  646  docker-compose exec mids bash -c "cat /w205/assignment-06-anupjha10/assessment-attempts-20180128-121051-nested.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 3280 messages.'"
+  647  docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e" | wc -l
+  648  docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e"
+  649  docker-compose down
+  650  history > anupjha10-history.txt
+  651  ls
+  652  vi anupjha10-history.txt 
+  653  ls
+  654  vi anupjha10-annotation.md
+  655  ls
+  656  git status
+  657  git add anupjha10-annotation.md
+  658  git add anupjha10-history.txt
+  659  git add assessment-attempts-20180128-121051-nested.json
+  660  git add docker-compose.yml
+  661  git add pretty_json.json 
+  662  git commit -m "Answered the assignment 6"
+  663  git branch 
+  664  git push origin Assignment 
+  665  docker-compose ps -a
+  666  docker-compose ps 
+  667  docker-compose up -d
+  668  docker-compose ps
+  669  docker ps -a
+  670  vi anupjha10-annotation.md 
+  671  git status 
+  672  git add anupjha10-annotation.md 
+  673  git commit -m "Answered the Assignment6"
+  674  git push origin Assignment 
+  675  vi anupjha10-annotation.md 
+  676  git add anupjha10-annotation.md 
+  677  git commit -m "Answered the Assignment6"
+  678  git push origin Assignment 
+  679  docker ps -a
+  680  cd w205/assignment-06-anupjha10/
+  681  ls
+  682  docker-compose down
+  683  docker ps -a
+  684  exit
+  685  docker ps -a
+  686  exit
+  687  cd w205/
+  688  ls
+  689  cd spark-with-kafka/
+  690  ls
+  691  docker-compose logs -f kafka
+  692  ps -ef
+  693  docker ps -a
+  694  mkdir ~/w205/spark-with-kafka
+  695  cd ~/w205/spark-with-kafka
+  696  cp ~/w205/course-content/07-Sourcing-Data/docker-compose.yml .
+  697  ls -l
+  698  vi docker-compose.yml 
+  699  docker-compose up -d 
+  700  docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  701  docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+  702  docker-compose exec kafka bash -c "seq 42 | kafka-console-producer --request-required-acks 1 --broker-list kafka:29092 --topic foo && echo 'Produced 42 messages.'"
+  703  docker-compose exec spark pyspark
+  704  docker-compose down
+  705  docker-compose ps
+  706  docker ps -a
+  707  cd ~/w205
+  708  curl -L -o github-example-large.json https://goo.gl/Y4MD58
+  709  cd ~/w205/spark-with-kafka
+  710  docker-compose up -d
+  711  docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  712  docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+  713  docker-compose exec mids bash -c "cat /w205/github-example-large.json"
+  714  docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.'"
+  715  docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c"
+  716  docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+  717  docker-compose exec spark pyspark
+  718  docker-compose down
+  719  docker ps -a
+  720  cd ..
+  721  cd assignment-06-anupjha10/
+  722  ls
+  723  docker ps -a
+  724  vi anupjha10-annotation.md 
+  725  git status
+  726  git add anupjha10-annotation.md 
+  727  git commit -m "Final Touches"
+  728  git push origin Assignment 
+  729  cd w205/
+  730  cd assignment-05-anupjha10/
+  731  ls
+  732  vi docker-compose.yml 
+  733  cd ../assignment-06-anupjha10/
+  734  ls
+  735  docker-compose up -d
+  736  vi docker-compose.yml 
+  737  docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  738  ls
+  739  docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+  740  docker-compose exec kafka bash -c "seq 42 | kafka-console-producer --request-required-acks 1 --broker-list localhost:29092 --topic foo && echo 'Produced 42 messages.'"
+  741  exit
+  742  docker-compose exec bash kafka
+  743  cd w205/assignment-06-anupjha10/
+  744  docker-compose exec bash kafka
+  745  docker-compose exec kafka bash
+  746  docker-compose down
+  747  exit
+  748  cd w205/
+  749  ls
+  750  xs spark-with-kafka/
+  751  ls
+  752  cd spark-with-kafka/
+  753  ls
+  754  vi docker-compose.yml 
+  755  grep -c ^processor /proc/cpuinfo     
+  756  cd ..
+  757  pwd
+  758  cd /proc
+  759  ls
+  760  vi cpuinfo 
+  761  vi meminfo 
+  762  exit
+  763  cd w205/
+  764  ls
+  765  git clone https://github.com/mids-w205-crook/assignment-07-anupjha10.git
+  766  cd assignment-07-anupjha10/
+  767  ls
+  768  vi docker-compose.yml
+  769  ls
+  770  git branch
+  771  git branch Assignment
+  772  git checkout Assignment 
+  773  git status
+  774  curl -L -o assessment-attempts-20180128-121051-nested.json https://goo.gl/ME6hjp
+  775  ls -ltr
+  776  jq length assessment-attempts-20180128-121051-nested.json
+  777  docker-compose up -d
+  778  vi docker-compose.yml 
+  779  docker-compose up -d
+  780  jq '.[]' assessment-attempts-20180128-121051-nested.json
+  781  jq '.[]' assessment-attempts-20180128-121051-nested.json > pretty_assessment.json
+  782  vi pretty_assessment.json 
+  783  docker-compose exec kafka kafka-topics --create --topic user_actions_web_log --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  784  docker-compose exec kafka kafka-topics --describe --topic user_actions_web_log --zookeeper zookeeper:32181
+  785  docker-compose exec mids bash -c "cat /w205/assignment-07-anupjha10/assessment-attempts-20180128-121051-nested.json"
+  786  docker-compose exec mids bash -c "cat /w205/assignment-07-anupjha10/assessment-attempts-20180128-121051-nested.json | jq '.'"
+  787  docker-compose exec mids bash -c "cat /w205/assignment-07-anupjha10/assessment-attempts-20180128-121051-nested.json | jq '.[]' -c"
+  788  docker-compose exec mids bash -c "cat /w205/assignment-07-anupjha10/assessment-attempts-20180128-121051-nested.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t user_actions_web_log && echo 'Produced 3280 messages.'"
+  789  docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e"
+  790  docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t  -o beginning -e"
+  791  docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t user_actions_web_log -o beginning -e"
+  792  docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t user_actions_web_log -o beginning -e" | wc -l
+  793  vi pretty_assessment.json 
+  794  docker-compose down
+  795  docker-compose ps -a
+  796  docker-compose ps 
+  797  docker ps -a
+  798  history > anupjha10-history.txt
+  799  vi anupjha10-history.txt 
+  800  vi anupjha10-annotation.md
+  801  git status
+  802  git add anupjha10-annotation.md 
+  803  git add anupjha10-history.txt 
+  804  git add assessment-attempts-20180128-121051-nested.json 
+  805  git add docker-compose.yml 
+  806  git add pretty_assessment.json 
+  807  git status
+  808  git commit -m "Answered the asignment 7"
+  809  git push origin Assignment 
+  810  jq length pretty_assessment.json 
+  811  jq length pretty_assessment.json | wc -l
+  812  vi anupjha10-annotation.md 
+  813  git status 
+  814  git add anupjha10-annotation.md 
+  815  git commit -m "Some more changes"
+  816  git push origin Assignment 
+  817  git add anupjha10-annotation.md 
+  818  vi anupjha10-annotation.md 
+  819  git add anupjha10-annotation.md 
+  820  git commit -m "Some more changes"
+  821  git push origin Assignment 
+  822  vi anupjha10-annotation.md 
+  823  git add anupjha10-annotation.md 
+  824  git commit -m "Some more changes"
+  825  git push origin Assignment 
+  826  cd w205/
+  827  cd assignment-07-anupjha10/
+  828  ls
+  829  docker-compose logs -f kafka
+  830  cd w205/
+  831  ls
+  832  cd assignment-07-anupjha10/
+  833  ls
+  834  vi pretty_assessment.json 
+  835  docker-compose up -d
+  836  docker-compose exec kafka kafka-topics --create --topic user_actions_web_log --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  837  docker-compose exec mids bash -c "cat /w205/assignment-07-anupjha10/assessment-attempts-20180128-121051-nested.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t user_actions_web_log && echo 'Produced 3280 messages.'"
+  838  docker-compose exec spark pyspark
+  839  ls
+  840  history > anupjha10-history.txt 
+  841  vi anupjha10-annotation.md 
+  842  docker-compose exec spark pyspark
+  843  git status
+  844  git add anupjha10-annotation.md 
+  845  git add anupjha10-history.txt 
+  846  git commit -m "Added pyspark stuff"
+  847  git push origin Assignment 
+  848  docker-compose ps
+  849  docker-compose down
+  850  docker-compose ps
+  851  cd ~/w205/spark-with-kafka-and-hdfs
+  852  cp ~/w205/course-content/08-Querying-Data/docker-compose.yml .
+  853  vi docker-compose.yml 
+  854  docker-compose up -d
+  855  docker-compose ps
+  856  docker ps -a
+  857  docker-compose exec kafka kafka-topics --create --topic players --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  858  cd ~/w205
+  859  curl -L -o players.json https://goo.gl/vsuCpZ
+  860  ls
+  861  vi players.json 
+  862  vi github-example-large.json 
+  863  cd ~/w205/spark-with-kafka-and-hdfs
+  864  docker-compose exec mids bash -c "cat /w205/players.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t players"
+  865  docker-compose exec spark pyspark
+  866  docker-compose exec kafka kafka-topics --create --topic commits --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  867  docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t commits"
+  868  docker-compose exec spark pyspark
+  869  docker-compose down
+  870  docker pull midsw205/base:latest
+  871  docker pull midsw205/base:0.1.8
+  872  docker pull midsw205/base:0.1.9
+  873  docker pull redis
+  874  docker pull confluentinc/cp-zookeeper:latest
+  875  docker pull confluentinc/cp-kafka:latest
+  876  docker pull midsw205/spark-python:0.0.5
+  877  docker pull midsw205/spark-python:0.0.6
+  878  docker pull midsw205/cdh-minimal:latest
+  879  docker pull midsw205/hadoop:0.0.2
+  880  docker pull midsw205/presto:0.0.1
+  881  cd w205
+  882  cd assignment-07-anupjha10/
+  883  ls
+  884  vi anupjha10-annotation.md 
+  885  mkdir ~/w205/spark-with-kafka-and-hdfs
+  886  cd ~/w205/spark-with-kafka-and-hdfs
+  887  docker-compose logs -f kafka
+  888  cd w205/assignment-07-anupjha10/
+  889  vi anupjha10-annotation.md 
+  890  git branch 
+  891  git status 
+  892  git add anupjha10-annotation.md 
+  893  git commit -m "Final touches"
+  894  git push origin Assignment 
+  895  cd w205
+  896  cd assignment-08-anupjha10/
+  897  docker-compose exec cloudera hadoop fs -ls /tmp/
+  898  cd ..
+  899  docker pull midsw205/base:latest
+  900  docker pull midsw205/base:0.1.8
+  901  docker pull midsw205/base:0.1.9
+  902  docker pull redis
+  903  docker pull confluentinc/cp-zookeeper:latest
+  904  docker pull confluentinc/cp-kafka:latest
+  905  docker pull midsw205/spark-python:0.0.5
+  906  docker pull midsw205/spark-python:0.0.6
+  907  docker pull midsw205/cdh-minimal:latest
+  908  docker pull midsw205/hadoop:0.0.2
+  909  docker pull midsw205/presto:0.0.1
+  910  cd w205/assignment-08-anupjha10/
+  911  ls
+  912  docker-compose up -d
+  913  docker-compose logs -f kafka
+  914  cd w205/
+  915  ls
+  916  cd spark-with-kafka-and-hdfs/
+  917  ls
+  918  vi docker-compose.yml 
+  919  docker-compose logs -f kafka
+  920  cd ..
+  921  cd assignment-08-anupjha10/
+  922  docker-compose logs -f kafka
+  923  cd w205/assignment-08-anupjha10/
+  924  docker-compose exec cloudera hadoop fs -ls /tmp/
+  925  docker-compose exec cloudera hadoop fs -ls /tmp/commits
+  926  jq '.[]' assessment-attempts-20180128-121051-nested.json > pretty_assessment.json
+  927  vi pretty_assessment.json 
+  928  cd w205/
+  929  ls
+  930  git clone https://github.com/mids-w205-crook/assignment-08-anupjha10.git
+  931  ls
+  932  cd assignment-08-anupjha10/
+  933  ls
+  934  git branch
+  935  git branch Assignment
+  936  git checkout Assignment 
+  937  curl -L -o assessment-attempts-20180128-121051-nested.json https://goo.gl/ME6hjp
+  938  ls
+  939  vi docker-compose.yml
+  940  docker-compose up -d
+  941  docker-compose ps
+  942  docker ps -a
+  943  docker-compose exec kafka kafka-topics --create --topic commit --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  944  docker-compose exec mids bash -c "cat /w205/assignment-08-anupjha10/assessment-attempts-20180128-121051-nested.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t commit && echo 'Produced 3280 messages.'"
+  945  docker-compose exec spark pyspark
+  946  ls
+  947  docker-compose down
+  948  docker ps -a
+  949  docker-compose up -d
+  950  docker-compose exec kafka kafka-topics --create --topic commit --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  951  ls
+  952  docker-compose exec mids bash -c "cat /w205/assignment-08-anupjha10/assessment-attempts-20180128-121051-nested.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t commit && echo 'Produced 3280 messages.'"
+  953  docker-compose exec spark pyspark
+  954  docker-compose down
+  955  diff docker-compose.yml ../spark-with-kafka-and-hdfs/docker-compose.yml 
+  956  vi docker-compose.yml 
+  957  docker-compose ps
+  958  docker-compose exec kafka kafka-topics --create --topic commit --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  959  docker-compose exec kafka kafka-topics --describe --topic commit --zookeeper zookeeper:32181
+  960  docker-compose exec mids bash -c "cat /w205/assignment-08-anupjha10/assessment-attempts-20180128-121051-nested.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t commit && echo 'Produced 3280 messages.'"
+  961  docker-compose exec cloudera hadoop fs -ls /tmp/
+  962  docker-compose exec spark pyspark
+  963  docker-compose down
+  964  docker-compose ps
+  965  docker-compose up -d
+  966  docker-compose exec kafka kafka-topics --create --topic commits --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  967  docker-compose exec kafka kafka-topics --describe --topic commits --zookeeper zookeeper:32181
+  968  docker-compose exec mids bash -c "cat /w205/assignment-08-anupjha10/assessment-attempts-20180128-121051-nested.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t commits && echo 'Produced 3280 messages.'"
+  969  docker-compose exec spark pyspark
+  970  docker ps -a
+  971  cd w205/assignment-08-anupjha10/
+  972  ls
+  973  docker-compose ps
+  974  docker-compose down
+  975  docker-compose ps
+  976  docker ps -a
+  977  cd ~/w205/flask-with-kafka
+  978  vi docker-compose.yml
+  979  docker-compose up -d
+  980  docker-compose ps
+  981  docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t events -o beginning -e"
+  982  docker-compose down
+  983  cd ../assignment-08-anupjha10/
+  984  docker-compose exec cloudera hadoop fs -ls /tmp/
+  985  docker-compose exec cloudera hadoop fs -ls /tmp/some_commit_info
+  986  mkdir ~/w205/flask-with-kafka
+  987  cd ~/w205/flask-with-kafka
+  988  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  989  cd ../assignment-08-anupjha10/
+  990  vi pretty_assessment.json 
+  991  docker-compose exec kafka kafka-topics --create --topic events --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  992  cd w205/flask-with-kafka/
+  993  docker-compose exec kafka kafka-topics --create --topic events --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  994  vi game_api.py
+  995  docker-compose exec mids curl http://localhost:5000/
+  996  docker-compose exec mids curl http://localhost:5000/purchase_a_sword
+  997  vi game_api.py
+  998  rm game_api.py
+  999  vi game_api.py 
+ 1000  docker-compose exec mids curl http://localhost:5000/
+ 1001  docker-compose exec mids curl http://localhost:5000/purchase_a_sword
+ 1002  docker-compose exec mids curl http://localhost:5000/
+ 1003  cd ..
+ 1004  cd w205
+ 1005  cd assignment-08-anupjha10/
+ 1006  ls
+ 1007  docker ps -a
+ 1008  docker-compose up -d
+ 1009  docker-compose exec kafka kafka-topics --create --topic commits --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+ 1010  docker-compose exec kafka kafka-topics --describe --topic commits --zookeeper zookeeper:32181
+ 1011  docker-compose exec mids bash -c "cat /w205/assignment-08-anupjha10/assessment-attempts-20180128-121051-nested.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t commits && echo 'Produced 3280 messages.'"
+ 1012  docker-compose exec spark pyspark
+ 1013  docker-compose down
+ 1014  docker-compose ps
+ 1015  docker ps -a
+ 1016  history > anupjha10-history.txt
+ 1017  ls
+ 1018  vi anupjha10-annotation.md
+ 1019  git status
+ 1020  git branch 
+ 1021  git add anupjha10-annotation.md
+ 1022  git add anupjha10-history.txt 
+ 1023  git add assessment-attempts-20180128-121051-nested.json 
+ 1024  git add docker-compose.yml 
+ 1025  git add pretty_assessment.json 
+ 1026  git status
+ 1027  git commit -m "Added Homework"
+ 1028  git push origin Assignment 
+ 1029  vi anupjha10-annotation.md 
+ 1030  git add anupjha10-annotation.md 
+ 1031  git commit -m "Added Homework"
+ 1032  git push origin Assignment 
+ 1033  vi anupjha10-annotation.md 
+ 1034  git add anupjha10-annotation.md 
+ 1035  git commit -m "Added Homework"
+ 1036  git push origin Assignment 
+ 1037  cd w205/
+ 1038  cd flask-with-kafka/
+ 1039  docker-compose up -d
+ 1040  ls
+ 1041  curl "http://127.0.0.1:5000"
+ 1042  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+ 1043  cd w205/flask-with-kafka/
+ 1044  curl "http://localhost:5000"
+ 1045  curl "http://127.0.0.1:5000"
+ 1046  docker-compose exec mids curl http://localhost:5000/
+ 1047  curl http://localhost:5000/
+ 1048  curl http://mids:5000/
+ 1049  curl http://localhost:5000
+ 1050  cd w205/flask-with-kafka/
+ 1051  hostname
+ 1052  hostname -I
+ 1053  docker-compose ps
+ 1054  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+ 1055  docker-compose exec mids curl http://localhost:5000/purchase_a_sword
+ 1056  curl http://157.230.138.2:5000
+ 1057  hostname -I
+ 1058  docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id
+ 1059  docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mids
+ 1060  docker-compose ps
+ 1061  docker ps -a
+ 1062  docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' flaskwithkafka_mids_1
+ 1063  curl http://172.18.0.2:5000
+ 1064  curl http://0.0.0.0:5000
+ 1065  vi game_api.py
+ 1066  docker-compose down
+ 1067  docker-compose up -d
+ 1068  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run --host=0.0.0.0
+ 1069  docker-compose down
+ 1070  cd w205/
+ 1071  ls
+ 1072  git clone https://github.com/mids-w205-crook/assignment-09-anupjha10.git
+ 1073  ls
+ 1074  cd assignment-09-anupjha10/
+ 1075  ls
+ 1076  vi README.md 
+ 1077  git branch Assignment
+ 1078  git checkout Assignment 
+ 1079  ls
+ 1080  pwd
+ 1081  vi docker-compose.yml
+ 1082  docker-compose up -d
+ 1083  docker ps
+ 1084  vi simple_game_api.py
+ 1085  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+ 1086  pwd
+ 1087  docker-compose exec mids curl http://localhost:5000/
+ 1088  docker-compose exec mids curl http://localhost:5000/join_guild
+ 1089  vi simple_game_api.py
+ 1090  docker-compose exec mids curl http://localhost:5000/join_guild/test_guild
+ 1091  vi simple_game_api.py
+ 1092  docker-compose exec mids curl http://localhost:5000/join_guild/test_guild
+ 1093  vi simple_game_api.py
+ 1094  docker-compose exec mids curl http://localhost:5000/join_guild/test_guild
+ 1095  vi simple_game_api.py
+ 1096  vi complex_game_api.py
+ 1097  docker-compose exec kafka kafka-topics --create --topic events --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+ 1098  docker-compose exec mids curl http://localhost:5000/
+ 1099  docker-compose exec mids curl http://localhost:5000/join_guild/test_guild
+ 1100  docker-compose exec mids curl http://localhost:5000/join_guild/test_guild2
+ 1101  docker-compose exec mids curl http://localhost:5000/join_guild/test_guild3
+ 1102  docker-compose exec mids env FLASK_APP=/w205/assignment-09-anupjha10/complex_game_api.py flask run
+ 1103  docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t events -o beginning -e"
+ 1104  vi complex_game_api.py
+ 1105  ls
+ 1106  vi simple_game_api.py
+ 1107  vi complex_game_api.py
+ 1108  vi simple_game_api.py
+ 1109  ls
+ 1110  ls -ltr
+ 1111  vi simple_game_api.py
+ 1112  vi complex_game_api.py
+ 1113  docker-compose exec mids env FLASK_APP=/w205/assignment-09-anupjha10/simple_game_api.py flask run
+ 1114  docker-compose exec mids env FLASK_APP=/w205/assignment-09-anupjha10/complex_game_api.py flask run
+ 1115  history > history_anupjha10.txt
+ 1116  ls
+ 1117  vi README.md 
+ 1118  git status
+ 1119  git add README.md 
+ 1120  git add complex_game_api.py
+ 1121  git add docker-compose.yml 
+ 1122  git add history_anupjha10.txt 
+ 1123  git add simple_game_api.py
+ 1124  git status
+ 1125  git commit -m "Added the files"
+ 1126  git push origin Assignment 
+ 1127  vi README.md 
+ 1128  git status 
+ 1129  git add README.md 
+ 1130  git commit -m "Modified Readme"
+ 1131  git push origin Assignment 
+ 1132  vi README.md 
+ 1133  git add README.md 
+ 1134  git commit -m "Modified Readme"
+ 1135  git push origin Assignment 
+ 1136  mkdir ~/w205/flask-with-kafka-and-spark/
+ 1137  cd ~/w205/flask-with-kafka-and-spark/
+ 1138  cp ~/w205/course-content/10-Transforming-Streaming-Data/docker-compose.yml .
+ 1139  docker-compose up -d
+ 1140  docker-compose ps
+ 1141  docker-compose exec kafka kafka-topics --create --topic events --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+ 1142  vi game_api_with_json_events.py
+ 1143  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka-and-spark/game_api_with_json_events.py flask run --host 0.0.0.0
+ 1144  cd ~/w205/flask-with-kafka-and-spark/
+ 1145  docker-compose exec mids curl http://localhost:5000/
+ 1146  docker-compose exec mids curl http://localhost:5000/purchase_a_sword
+ 1147  cd ~/w205/flask-with-kafka-and-spark/
+ 1148  docker-compose exec mids curl http://localhost:5000/purchase_a_sword
+ 1149  docker-compose exec mids curl http://localhost:5000/
+ 1150  docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
+ 1151  docker-compose exec spark pyspark
+ 1152  docker-compose exec spark bash
+ 1153  cd ~/w205/flask-with-kafka-and-spark/
+ 1154  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root' pyspark
+ 1155  cd ~/w205/flask-with-kafka-and-spark/
+ 1156  docker-compose ps
+ 1157  vi game_api_with_extended_json_events.py
+ 1158  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka-and-spark/game_api_with_extended_json_events.py flask run --host 0.0.0.0
+ 1159  docker-compose down
+ 1160  docker-compose up -d
+ 1161  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka-and-spark/game_api_with_extended_json_events.py flask run --host 0.0.0.0
+ 1162  docker-sompose down
+ 1163  docker-compose down
+ 1164  exit
+ 1165  cd ~/w205/flask-with-kafka-and-spark/
+ 1166  docker-compose exec mids curl http://localhost:5000/
+ 1167  docker-compose exec mids curl http://localhost:5000/purchase_a_sword
+ 1168  docker-compose exec mids curl http://localhost:5000/
+ 1169  docker-compose exec mids curl http://localhost:5000/purchase_a_sword
+ 1170  \\docker-compose exec mids curl http://localhost:5000/purchase_a_sword
+ 1171  docker-compose exec mids curl http://localhost:5000/purchase_a_sword
+ 1172  docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
+ 1173  cd w205/
+ 1174  cd assignment-09-anupjha10/
+ 1175  ls
+ 1176  vi simple_game_api.py
+ 1177  vi complex_game_api.py
+ 1178  git status
+ 1179  git add README.md 
+ 1180  git commit -m "Added Python Code in Readme"
+ 1181  git push origin Assignment 
+ 1182  vi README.md 
+ 1183  cd w205/
+ 1184  ls
+ 1185  cd assignment-09-anupjha10/
+ 1186  ls
+ 1187  vi README.md 
+ 1188  vi docker-compose.yml 
+ 1189  cd w205/
+ 1190  cd assignment-09-anupjha10/
+ 1191  ls
+ 1192  ls -a
+ 1193  rm .README.md.swp 
+ 1194  rm .docker-compose.yml.swp 
+ 1195  vi README.md 
+ 1196  git status
+ 1197  git add README.md 
+ 1198  git commit -m "Changed REadme"
+ 1199  git push origin Assignment 
+ 1200  cd w205/assignment-10-anupjha10/
+ 1201  docker-compose exec mids curl http://localhost:5000/
+ 1202  clear
+ 1203  docker-compose exec mids curl http://localhost:5000/
+ 1204  docker-compose exec mids curl http://localhost:5000/buy_a_sword
+ 1205  docker-compose exec mids curl http://localhost:5000/join_guild/test_guild1
+ 1206  docker-compose exec mids curl http://localhost:5000/
+ 1207  docker-compose exec mids curl http://localhost:5000/buy_a_sword
+ 1208  docker-compose exec mids curl http://localhost:5000/join_guild/test_guild1
+ 1209  docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
+ 1210  docker-compose exec mids curl http://localhost:5000/
+ 1211  docker-compose exec mids curl http://localhost:5000/buy_a_sword
+ 1212  docker-compose exec mids curl http://localhost:5000/join_guild/test_guild1
+ 1213  docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t events -o beginning -e"
+ 1214  clear
+ 1215  docker-compose exec spark pyspark
+ 1216  cd w205/
+ 1217  cd spark-from-files/
+ 1218  docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
+ 1219  vi extract_events.py 
+ 1220  docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
+ 1221  docker-compose exec spark spark-submit /w205/spark-from-files/extract_events.py
+ 1222  docker-compose exec spark spark-submit /w205/spark-from-files/transform_events.py
+ 1223  docker-compose exec spark spark-submit /w205/spark-from-files/separate_events.py
+ 1224  docker-compose exec spark   env     PYSPARK_DRIVER_PYTHON=jupyter     PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root'   pyspark
+ 1225  docker-compose down
+ 1226  exit
+ 1227  cd ~/w205/spark-from-files
+ 1228  docker-compose logs -f cloudera
+ 1229  mkdir ~/w205/spark-from-files/
+ 1230  cd ~/w205/spark-from-files
+ 1231  cp ~/w205/course-content/11-Storing-Data-III/docker-compose.yml .
+ 1232  cp ~/w205/course-content/11-Storing-Data-III/*.py .
+ 1233  ls
+ 1234  docker-compose up -d 
+ 1235  ls
+ 1236  docker-compose exec kafka kafka-topics --create --topic events --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+ 1237  docker-compose exec mids env FLASK_APP=/w205/spark-from-files/game_api.py flask run --host 0.0.0.0
+ 1238  docker-compose ps
+ 1239  cd ~/w205/spark-from-files
+ 1240  docker-compose exec cloudera hadoop fs -ls /tmp/
+ 1241  docker-compose exec cloudera hadoop fs -ls /tmp/extracted_events/
+ 1242  docker-compose exec spark bash
+ 1243  vi docker-compose.yml 
+ 1244  exit
+ 1245  cd w205/assignment-10-anupjha10/
+ 1246  ls
+ 1247  vi README.md 
+ 1248  git status 
+ 1249  git add README.md 
+ 1250  git commit -m "Changed Readme"
+ 1251  git push origin Assignment 
+ 1252  cd w205/
+ 1253  ls
+ 1254  git clone https://github.com/mids-w205-crook/assignment-11-anupjha10.git
+ 1255  cd assignment-11-anupjha10/
+ 1256  ls
+ 1257  git branch Assignment
+ 1258  git checkout Assignment 
+ 1259  git branch
+ 1260  cp ~/w205/course-content/11-Storing-Data-III/docker-compose.yml .
+ 1261  cp ~/w205/course-content/11-Storing-Data-III/*.py .
+ 1262  ls
+ 1263  vi docker-compose.yml 
+ 1264  cd w205/full-stack/
+ 1265  docker-compose exec spark bash
+ 1266  mkdir ~/w205/full-stack/
+ 1267  cd ~/w205/full-stack
+ 1268  cp ~/w205/course-content/12-Querying-Data-II/docker-compose.yml .
+ 1269  cp ~/w205/course-content/12-Querying-Data-II/*.py .
+ 1270  vi docker-compose.yml 
+ 1271  docker-compose up -d
+ 1272  docker-compose ps
+ 1273  docker-compose exec kafka kafka-topics --create --topic events --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+ 1274  docker-compose exec mids ab -n 10 -H "Host: user1.comcast.com" http://localhost:5000/
+ 1275  docker-compose exec mids ab -n 10 -H "Host: user1.comcast.com" http://localhost:5000/purchase_a_sword
+ 1276  docker-compose exec mids ab -n 10 -H "Host: user2.att.com" http://localhost:5000/
+ 1277  docker-compose exec mids ab -n 10 -H "Host: user2.att.com" http://localhost:5000/purchase_a_sword
+ 1278  docker-compose exec spark spark-submit /w205/full-stack/just_filtering.py
+ 1279  docker-compose exec spark spark-submit /w205/full-stack/filtered_writes.py
+ 1280  docker-compose exec cloudera hadoop fs -ls /tmp/
+ 1281  docker-compose exec cloudera hadoop fs -ls /tmp/purchases/
+ 1282  docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root' pyspark
+ 1283  ls
+ 1284  docker ps
+ 1285  docker ps -a
+ 1286  cd w205/full-stack/
+ 1287  docker-compose exec mids env FLASK_APP=/w205/full-stack/game_api.py flask run --host 0.0.0.0
+ 1288  docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning
+ 1289  cd w205/full-stack/
+ 1290  docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning
+ 1291  docker-compose down 
+ 1292  docker-compose ps
+ 1293  cd ..
+ 1294  ls
+ 1295  pwd
+ 1296  zip -r w205.zip w205
+ 1297  ls
+ 1298  cd w205/
+ 1299  cd assignment-11-anupjha10/
+ 1300  ls
+ 1301  vi docker-compose.yml 
+ 1302  docker-compose up -d
+ 1303  docker-compose exec kafka kafka-topics --create --topic events --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+ 1304  ls
+ 1305  vi game_api.py 
+ 1306  docker-compose exec mids env FLASK_APP=/w205/assignment-11-anupjha10/game_api.py flask run --host 0.0.0.0
+ 1307  docker-compose ps
+ 1308  docker-compose down
+ 1309  hostname
+ 1310  ipconfig
+ 1311  ifconfig
+ 1312  docker-compose ps
+ 1313  docker ps -a
+ 1314  docker-compose up -d
+ 1315  docker-compose exec kafka kafka-topics --create --topic events --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+ 1316  docker-compose exec mids env FLASK_APP=/w205/assignment-11-anupjha10/game_api.py flask run --host 0.0.0.0
+ 1317  exit
+ 1318  cd w205/assignment-11-anupjha10/
+ 1319  docker-compose logs -f cloudera
+ 1320  exit
+ 1321  cd w205/spark-from-files/
+ 1322  ls
+ 1323  vi transform_events.py 
+ 1324  exit
+ 1325  cd w205/
+ 1326  cd assignment-11-anupjha10/
+ 1327  docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
+ 1328  clear
+ 1329  docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
+ 1330  vi extract_events.py 
+ 1331  docker-compose exec spark spark-submit /w205/assignment-11-anupjha10/extract_events.py
+ 1332  docker-compose exec cloudera hadoop fs -ls /tmp/
+ 1333  docker-compose exec cloudera hadoop fs -ls /tmp/extracted_events/
+ 1334  docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
+ 1335  docker-compose exec spark spark-submit /w205/assignment-11-anupjha10/extract_events.py
+ 1336  docker-compose exec cloudera hadoop fs -ls /tmp/
+ 1337  docker-compose exec cloudera hadoop fs -ls /tmp/extracted_events/
+ 1338  vi transform_events.py 
+ 1339  docker-compose exec spark spark-submit /w205/assignment-11-anupjha10/transform_events.py
+ 1340  docker-compose exec cloudera hadoop fs -ls /tmp/
+ 1341  docker-compose exec cloudera hadoop fs -ls /tmp/extracted_events/
+ 1342  vi transform_events.py 
+ 1343  docker-compose exec spark spark-submit /w205/assignment-11-anupjha10/transform_events.py
+ 1344  vi transform_events.py 
+ 1345  clear
+ 1346  docker-compose exec spark spark-submit /w205/assignment-11-anupjha10/transform_events.py
+ 1347  vi transform_events.py 
+ 1348  docker-compose down
+ 1349  docker-compose ps
+ 1350  exit
+ 1351  cd w205/assignment-11-anupjha10/
+ 1352  clear
+ 1353  docker-compose up -d
+ 1354  docker-compose ps
+ 1355  docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
+ 1356  docker-compose exec spark spark-submit /w205/assignment-11-anupjha10/extract_events.py
+ 1357  docker-compose exec cloudera hadoop fs -ls /tmp/extracted_events/
+ 1358  docker-compose exec spark spark-submit /w205/assignment-11-anupjha10/transform_events.py
+ 1359  vi transform_events.py 
+ 1360  clear
+ 1361  docker-compose exec spark spark-submit /w205/assignment-11-anupjha10/transform_events.py
+ 1362  docker-compose exec spark pyspark
+ 1363  docker-compose down
+ 1364  vi game_api.py
+ 1365  docker-compose up -d
+ 1366  docker-compose exec kafka kafka-topics --create --topic events --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+ 1367  docker-compose exec mids env FLASK_APP=/w205/assignment-11-anupjha10/game_api.py flask run --host 0.0.0.0
+ 1368  docker-compose down
+ 1369  docker-compose up -d
+ 1370  docker-compose exec mids env FLASK_APP=/w205/assignment-11-anupjha10/game_api.py flask run --host 0.0.0.0
+ 1371  docker-compose exec spark spark-submit /w205/assignment-11-anupjha10/transform_events.py
+ 1372  vi separate_events.py 
+ 1373  docker-compose exec spark spark-submit /w205/assignment-11-anupjha10/separate_events.py
+ 1374  docker-compose down
+ 1375  history > anupjha10-history.txt
